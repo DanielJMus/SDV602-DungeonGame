@@ -54,6 +54,9 @@ public class MenuInteraction : MonoBehaviour
     public void LoginSuccess(List<Account> pReceivedList)
     {
         print("Logged in!");
-        SceneManager.LoadScene(1);
+        GameManager.instance.ID = pReceivedList[0].ID;
+        GameManager.instance.Username = pReceivedList[0].Username;
+        GameManager.instance.Level = pReceivedList[0].Level;
+        SceneManager.LoadScene(GameManager.instance.Level + 1);
     }
 }

@@ -320,7 +320,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  ID: -1
+  Username: 
+  Level: -1
   HasGoldKey: 0
+  LevelChatMessageCount: 0
 --- !u!4 &206010738
 Transform:
   m_ObjectHideFlags: 0

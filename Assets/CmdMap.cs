@@ -36,13 +36,17 @@ public class CmdMap
     {
         bool foundCmd = false;
         Cmd aCmd;
-        if(commands.ContainsKey(_command) || _command.StartsWith("say"))
+        if(commands.ContainsKey(_command))
         {
             Debug.Log("OK");
             aCmd = commands[_command];
             aCmd.Execute(this);
             foundCmd = true;
-        } else {
+        } else if (!commands.ContainsKey(_command)) {
+            if(_command.StartsWith("say")) {
+                aCmd = new CmdSay(_command.Split(new string[] {"say"}, System.StringSplitOptions.None)[1]);
+                aCmd.Execute(this);
+            }
             foundCmd = false;
         }
         return foundCmd;

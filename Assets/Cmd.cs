@@ -117,3 +117,33 @@ public class CmdUse : Cmd
         }
     }
 }
+
+// Command to say something in chat
+public class CmdSay : Cmd
+{
+    private string message;
+
+    public CmdSay (string _message)
+    {
+        message = _message;
+    }
+
+    public override void Execute (CmdMap _cmd)
+    {
+        if(string.IsNullOrEmpty(message) ) {
+            Debug.LogError("Tried sending message but it was empty.");
+        }
+
+        JSONDropService jsDrop = new JSONDropService { Token = "d341e18b-b0b5-4d33-a33d-9239ea617e5a" };
+        jsDrop.Store<Chat, JsnReceiver> (new List<Chat>
+        {
+            new Chat{PlayerName = GameManager.instance.Username, 
+                     Level = GameManager.instance.Level, 
+                     Content = message}
+        }, MessageSuccess);
+    }
+
+    public void MessageSuccess (JsnReceiver pReceived) {
+        Debug.Log("Message sent successfully.");
+    }
+}
