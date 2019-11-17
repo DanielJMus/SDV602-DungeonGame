@@ -44,8 +44,9 @@ public class GameManager : MonoBehaviour
             instance = this;
         }
 
+        // Find or create necessary objects
         player = Object.FindObjectOfType<Player>();
-        database = new DatabaseManager("GameData.db");
+        // database = new DatabaseManager("GameData.db");
         cmdLine = Object.FindObjectOfType<CommandLine>();
     }
 
@@ -53,7 +54,10 @@ public class GameManager : MonoBehaviour
 
     void Update ()
     {
+        // Don't check chat messages for main menu or end screen
         if (Level < 0) return;
+
+        // Check the number of chat messages for the current level in the database every second (chatUpdateInterval) 
         if(Time.time > lastChatUpdate + chatUpdateInterval)
         {
             lastChatUpdate = Time.time;
@@ -63,6 +67,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // If the number of chat messages in the current level has changed, append all of the new messages to the chat log
     void CheckChatMessageCount (List<Chat> chatMessageList)
     {
         if(chatMessageList.Count != LevelChatMessageCount && chatHasUpdatedOnce) {
@@ -75,14 +80,10 @@ public class GameManager : MonoBehaviour
         
         LevelChatMessageCount = chatMessageList.Count;
     }
+    void ChatMessageFail(JsnReceiver pReceived) { }
 
-    void ChatMessageFail(JsnReceiver pReceived)
-    {
-        print("No chat messages found in current level");
-    }
-
+    // Append all new messages to the chat log
     void UpdateChatMessages (List<Chat> chatMessageList) {
-        print("Detected new chat messages");
         for(int i = PreviousChatMessageCount; i < chatMessageList.Count; i++) {
             Chat message = chatMessageList[i];
             if(message.PlayerName == Username) continue;
@@ -90,6 +91,5 @@ public class GameManager : MonoBehaviour
             cmdLine.Send(content);
         }
         PreviousChatMessageCount = chatMessageList.Count;
-        // Go through list and append newest messages to chat
     }
 }
