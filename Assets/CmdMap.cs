@@ -44,7 +44,7 @@ public class CmdMap
             foundCmd = true;
         } else if (!commands.ContainsKey(_command)) {
             if(_command.StartsWith("say")) {
-                aCmd = new CmdSay(_command.Split(new string[] {"say"}, System.StringSplitOptions.None)[1]);
+                aCmd = new CmdSay(_command.Split(new string[] {"say "}, System.StringSplitOptions.None)[1]);
                 aCmd.Execute(this);
             }
             foundCmd = false;

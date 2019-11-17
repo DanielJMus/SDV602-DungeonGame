@@ -15,9 +15,15 @@ public class CommandManager
     {
         string _result = "No.";
 
-        if(!_command.ToLower().StartsWith("say"))
-            _command = _command.ToLower();
         string[] _arguments = _command.Split(' ');
+
+        if(_command.ToLower().StartsWith("say")) {
+            _arguments = new string[] {
+                "say", _command.Replace("say ", string.Empty).Replace("Say ", string.Empty)
+            };
+        } else {
+            _arguments = _command.Split(' ');
+        }
         if(_arguments.Length >= 2)
         {
             string _cmd = _arguments[0] + " " + _arguments[1];

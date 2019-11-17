@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
 
     public int PreviousChatMessageCount;
     public int LevelChatMessageCount;
+    public bool chatHasUpdatedOnce;
 
     void OnEnable()
     {
@@ -64,9 +65,14 @@ public class GameManager : MonoBehaviour
 
     void CheckChatMessageCount (List<Chat> chatMessageList)
     {
-        if(chatMessageList.Count != LevelChatMessageCount) {
+        if(chatMessageList.Count != LevelChatMessageCount && chatHasUpdatedOnce) {
             UpdateChatMessages(chatMessageList);
         }
+        if(!chatHasUpdatedOnce) {
+            PreviousChatMessageCount = chatMessageList.Count;
+            chatHasUpdatedOnce = true;
+        }
+        
         LevelChatMessageCount = chatMessageList.Count;
     }
 

@@ -25,14 +25,14 @@ public class CommandLine : MonoBehaviour
     {
         string current = output.text;
 
-        if(_input.ToLower().StartsWith("say ")) {
-            Send("[" + GameManager.instance.Username + "]: " + _input.Replace("say ", string.Empty).Replace("Say ", string.Empty));
-        }
-
         CommandManager aCmd = new CommandManager();
 
-        if(!_input.ToLower().StartsWith("say "))
+        if(_input.ToLower().StartsWith("say ")) {
+            aCmd.Parse(_input);
+            Send("[" + GameManager.instance.Username + "]: " + _input.Replace("say ", string.Empty).Replace("Say ", string.Empty));
+        } else {
             output.text += '\n' + aCmd.Parse(_input);
+        }
 
         input.text = string.Empty;
         input.ActivateInputField();
