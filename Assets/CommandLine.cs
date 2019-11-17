@@ -35,7 +35,10 @@ public class CommandLine : MonoBehaviour
         }
 
         input.text = string.Empty;
-        input.ActivateInputField();
+        #if UNITY_EDITOR || UNITY_STANDALONE_WIN
+            input.ActivateInputField();
+        #endif
+        
     }
 
     public void Send (string _input) {

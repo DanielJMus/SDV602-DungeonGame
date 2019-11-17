@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
 
         // Find or create necessary objects
         player = Object.FindObjectOfType<Player>();
-        // database = new DatabaseManager("GameData.db");
+        database = new DatabaseManager("GameData.db");
         cmdLine = Object.FindObjectOfType<CommandLine>();
     }
 
