@@ -38,7 +38,6 @@ public class CmdMap
         Cmd aCmd;
         if(commands.ContainsKey(_command))
         {
-            Debug.Log("OK");
             aCmd = commands[_command];
             aCmd.Execute(this);
             foundCmd = true;

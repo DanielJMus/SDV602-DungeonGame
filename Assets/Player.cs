@@ -65,6 +65,8 @@ public class Player : MonoBehaviour
             transform.rotation = Quaternion.Lerp(transform.rotation, _rotation, i);
             yield return null;
         }
+        transform.position = _position;
+        transform.rotation = _rotation;
         moving = false;
     }
 

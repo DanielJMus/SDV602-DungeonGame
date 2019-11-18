@@ -19,4 +19,15 @@ public class ItemTile : MonoBehaviour
             lcPlayer.SetItemTile(this);
         }
     }
+
+    private bool hasCheckedInventoryState = false;
+
+    void Update () {
+        if(GameManager.instance.inventory.HasLoaded && !hasCheckedInventoryState) {
+            hasCheckedInventoryState = true;
+            if(GameManager.instance.inventory.HasItem(Name)) {
+                Destroy(this.gameObject);
+            }
+        }
+    }
 }

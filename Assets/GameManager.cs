@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
 
     public DatabaseManager database;
     public CommandLine cmdLine;
+    public InventoryManager inventory;
 
     public int PreviousChatMessageCount;
     public int LevelChatMessageCount;
@@ -46,7 +47,8 @@ public class GameManager : MonoBehaviour
 
         // Find or create necessary objects
         player = Object.FindObjectOfType<Player>();
-        database = new DatabaseManager("GameData.db");
+        inventory = Object.FindObjectOfType<InventoryManager>();
+        // database = new DatabaseManager("GameData.db");
         cmdLine = Object.FindObjectOfType<CommandLine>();
     }
 

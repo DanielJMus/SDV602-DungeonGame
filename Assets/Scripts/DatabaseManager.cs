@@ -17,24 +17,29 @@ public class DatabaseManager
         }
     }
 
-    public DatabaseManager  (string DatabaseName)
+    public DatabaseManager  (string DatabaseName)//
     {
-        string dbPath = string.Format(@"Assets/StreamingAssets/{0}", DatabaseName);
-        string filePath = string.Format("{0}/{1}", Application.persistentDataPath, DatabaseName);
+        // string dbPath = string.Format(@"Assets/StreamingAssets/{0}", DatabaseName);
+        // string filePath = string.Format("{0}/{1}", Application.persistentDataPath, DatabaseName);
 
-        if(!File.Exists(filePath))
-        {
-            Debug.LogWarning("Database does not exist");
+        // if(!File.Exists(filePath))
+        // {
+        //     Debug.LogWarning("Database does not exist");
 
-            #if UNITY_ANDROID
-                var loadDB = new WWW("jar:file://" + Application.dataPath + "!/assets/" + DatabaseName);
-                while (!loadDB.isDone) { }
-                File.WriteAllBytes(filePath, loadDB.bytes);
-            #else
-                var loadDB = Application.dataPath + "/StreamingAssets/" + DatabaseName;
-                File.Copy(loadDB, filePath);
-            #endif
-        }
+        //     #if UNITY_ANDROID
+        //         Debug.Log("Android");
+        //         var loadDB = new WWW("jar:file://" + Application.dataPath + "!/assets/" + DatabaseName);
+        //         while (!loadDB.isDone) { }
+        //         Debug.Log("Loaded");
+        //         File.WriteAllBytes(filePath, loadDB.bytes);
+        //     #elif UNITY_EDITOR
+        //         Debug.Log("Editor")
+        //         var loadDB = Application.dataPath + "/StreamingAssets/" + DatabaseName;
+        //         File.Copy(loadDB, filePath);
+        //     #endif
+        // }
+
+        string dbPath = Application.streamingAssetsPath + "/" + DatabaseName;
 
         _connection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create);
     }

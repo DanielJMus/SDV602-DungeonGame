@@ -31,7 +31,9 @@ public class CommandLine : MonoBehaviour
             aCmd.Parse(_input);
             Send("[" + GameManager.instance.Username + "]: " + _input.Replace("say ", string.Empty).Replace("Say ", string.Empty));
         } else {
-            output.text += '\n' + aCmd.Parse(_input);
+            string result = aCmd.Parse(_input);
+            if(!string.IsNullOrEmpty(result))
+                output.text += '\n' + result;
         }
 
         input.text = string.Empty;

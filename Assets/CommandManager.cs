@@ -29,7 +29,7 @@ public class CommandManager
             string _cmd = _arguments[0] + " " + _arguments[1];
             CmdMap _map = new CmdMap();
             if(_map.Run(_cmd)) {
-                _result = "Did a thing successfully.";
+                _result = string.Empty;
             }
         }
         return _result;

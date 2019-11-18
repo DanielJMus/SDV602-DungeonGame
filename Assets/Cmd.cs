@@ -76,8 +76,7 @@ public class CmdGet : Cmd
                 {
                     if(GameManager.instance.player.GetItemTile.ItemName == ("Gold Key"))
                     {
-                        GameManager.instance.database.AddInventoryItem("Gold Key", GameManager.instance.player.ID);
-                        //GameManager.instance.HasGoldKey = true;
+                        GameManager.instance.inventory.AddInventoryItem("Gold Key");
                         GameManager.instance.player.IsOnItemTile = false;
                         Destroy(GameManager.instance.player.GetItemTile.gameObject);
                     }
@@ -106,9 +105,8 @@ public class CmdUse : Cmd
                 {
                     if(GameManager.instance.player.GetDoorTile.KeyName == ("Gold Key"))
                     {
-                        if(GameManager.instance.database.GetInventoryItem("Gold Key", GameManager.instance.player.ID) != null) {
-                        //if(GameManager.instance.HasGoldKey) {
-                            GameManager.instance.database.RemoveInventoryItem("Gold Key", GameManager.instance.player.ID);
+                        if(GameManager.instance.inventory.HasItem("Gold Key")) {
+                            GameManager.instance.inventory.RemoveInventoryItem("Gold Key");
                             SceneManager.LoadScene(2);
                         }
                     }
