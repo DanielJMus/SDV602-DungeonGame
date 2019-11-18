@@ -107,7 +107,8 @@ public class CmdUse : Cmd
                     {
                         if(GameManager.instance.inventory.HasItem("Gold Key")) {
                             GameManager.instance.inventory.RemoveInventoryItem("Gold Key");
-                            SceneManager.LoadScene(2);
+                            GameManager.instance.FinishLevel();
+                            // SceneManager.LoadScene(2);
                         }
                     }
                 }

@@ -89,6 +89,8 @@ public class JSONDropManager : MonoBehaviour
         //     new Account{Username = "DanielJMus", Password = "Password1", Level = 0}
         // }, jsnReceiverDel);
 
+        //jsDrop.Drop<Account, JsnReceiver>(jsnReceiverDel);
+
         // jsDrop.Store<Account, JsnReceiver> (new List<Account>
         // {
         //     new Account{Username = "Admin", Password = "Admin", Level = 0},
@@ -106,7 +108,6 @@ public class JSONDropManager : MonoBehaviour
         
         // // jsDrop.Delete<Account, JsnReceiver>("Username = 'Test'", jsnReceiverDel);
         
-        // //jsDrop.Drop<Account, JsnReceiver>(jsnReceiverDel);
         // #endregion
 
     // }

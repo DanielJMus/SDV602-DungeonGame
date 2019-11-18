@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
     
     // Move the camera in the specified direction
     public void Move (string destination) {
-        OnItemTile = false;
+        // OnItemTile = false;
         Vector3 newPosition = transform.position;
         Quaternion newRotation = transform.rotation;
         switch(destination)

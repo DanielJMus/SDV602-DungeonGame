@@ -20,6 +20,16 @@ public class ItemTile : MonoBehaviour
         }
     }
 
+    // When the player enters the collision box, send the data to the player.
+    void OnTriggerExit (Collider col)
+    {
+        if(col.gameObject.CompareTag("Player"))
+        {
+            Player lcPlayer = col.gameObject.GetComponent<Player>();
+            lcPlayer.IsOnItemTile = false;
+        }
+    }
+
     private bool hasCheckedInventoryState = false;
 
     void Update () {

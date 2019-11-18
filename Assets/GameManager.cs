@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public Player player;
     public int ID = -1;
     public string Username;
+    public string Password;
     public int Level;
 
     public bool HasGoldKey;
@@ -21,6 +22,8 @@ public class GameManager : MonoBehaviour
     public int PreviousChatMessageCount;
     public int LevelChatMessageCount;
     public bool chatHasUpdatedOnce;
+
+    public JSONDropService JSON = null;
 
     void OnEnable()
     {
@@ -36,9 +39,9 @@ public class GameManager : MonoBehaviour
     void OnLevelFinishedLoading (Scene scene, LoadSceneMode mode) {
         DontDestroyOnLoad(this.gameObject);
 
-        JSONDropService jsDrop = new JSONDropService { Token = "d341e18b-b0b5-4d33-a33d-9239ea617e5a" };
+        JSON = new JSONDropService { Token = "d341e18b-b0b5-4d33-a33d-9239ea617e5a" };
         string query = "Level = '" + Level + "'";
-        jsDrop.Select<Chat, JsnReceiver>(query, CheckChatMessageCount, ChatMessageFail);
+        JSON.Select<Chat, JsnReceiver>(query, CheckChatMessageCount, ChatMessageFail);
 
         if (instance == null)
         { 
@@ -63,9 +66,8 @@ public class GameManager : MonoBehaviour
         if(Time.time > lastChatUpdate + chatUpdateInterval)
         {
             lastChatUpdate = Time.time;
-            JSONDropService jsDrop = new JSONDropService { Token = "d341e18b-b0b5-4d33-a33d-9239ea617e5a" };
             string query = "Level = '" + Level + "'";
-            jsDrop.Select<Chat, JsnReceiver>(query, CheckChatMessageCount, ChatMessageFail);
+            JSON.Select<Chat, JsnReceiver>(query, CheckChatMessageCount, ChatMessageFail);
         }
     }
 
@@ -93,5 +95,19 @@ public class GameManager : MonoBehaviour
             cmdLine.Send(content);
         }
         PreviousChatMessageCount = chatMessageList.Count;
+    }
+
+    public void FinishLevel () {
+        JSON.Store<Account, JsnReceiver> (new List<Account>
+        {
+            new Account{ID = ID, Username = Username, Password = Password, Level = Level + 1},
+        }, LoadNextLevelSuccess);
+        
+    }
+
+    private void LoadNextLevelSuccess (JsnReceiver pReceived)
+    {
+        Level++;
+        SceneManager.LoadScene(Level + 1);
     }
 }

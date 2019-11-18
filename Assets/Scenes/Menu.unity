@@ -322,6 +322,7 @@ MonoBehaviour:
   player: {fileID: 0}
   ID: -1
   Username: 
+  Password: 
   Level: -1
   HasGoldKey: 0
   cmdLine: {fileID: 0}
@@ -3811,6 +3812,7 @@ GameObject:
   - component: {fileID: 1914985660}
   - component: {fileID: 1914985659}
   - component: {fileID: 1914985663}
+  - component: {fileID: 1914985664}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -3915,6 +3917,18 @@ MonoBehaviour:
   passwordField: {fileID: 1053550093}
   outputText: {fileID: 0}
   incorrectText: {fileID: 1631106748}
+--- !u!114 &1914985664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1914985658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15f9e4aed9e259c47aa2c70a9936abd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2065735560
 GameObject:
   m_ObjectHideFlags: 0
