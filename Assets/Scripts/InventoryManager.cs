@@ -13,8 +13,7 @@ public class InventoryManager : MonoBehaviour
     public void LoadInventoryFail(JsnReceiver pReceived) { }
 
     void Awake () {
-        JSONDropService jsDrop = new JSONDropService { Token = "d341e18b-b0b5-4d33-a33d-9239ea617e5a" };
-        jsDrop.All<Inventory, JsnReceiver>(LoadInventory, LoadInventoryFail);
+        GameManager.instance.JSON.All<Inventory, JsnReceiver>(LoadInventory, LoadInventoryFail);
     }
 
     private void LoadInventory (List<Inventory> inventoryItems) {
@@ -28,8 +27,7 @@ public class InventoryManager : MonoBehaviour
     public void AddInventoryItem (string _itemname)
     {
         itemContext = _itemname;
-        JSONDropService jsDrop = new JSONDropService { Token = "d341e18b-b0b5-4d33-a33d-9239ea617e5a" };
-        jsDrop.Store<Inventory, JsnReceiver> (new List<Inventory>
+        GameManager.instance.JSON.Store<Inventory, JsnReceiver> (new List<Inventory>
         {
             new Inventory{ItemName = _itemname, PlayerID = GameManager.instance.ID}
         }, AddInventorySuccess);
@@ -38,9 +36,8 @@ public class InventoryManager : MonoBehaviour
     public void RemoveInventoryItem (string _itemname)
     {
         itemContext = _itemname;
-        JSONDropService jsDrop = new JSONDropService { Token = "d341e18b-b0b5-4d33-a33d-9239ea617e5a" };
         string query = "PlayerID = '" + GameManager.instance.ID + "' AND " + "ItemName = '" + _itemname + "'";
-        jsDrop.Delete<Inventory, JsnReceiver>(query, RemoveInventorySuccess);
+        GameManager.instance.JSON.Delete<Inventory, JsnReceiver>(query, RemoveInventorySuccess);
     }
 
     public bool HasItem (string _itemname) {

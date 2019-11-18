@@ -4,6 +4,7 @@ public class Account
 {
     [PrimaryKey, AutoIncrement]
     public int ID { get; set; }
+    [Unique]
     public string Username { get; set; }
     public string Password { get; set; }
     public int Level { get; set; }

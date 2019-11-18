@@ -133,8 +133,7 @@ public class CmdSay : Cmd
             Debug.LogError("Tried sending message but it was empty.");
         }
 
-        JSONDropService jsDrop = new JSONDropService { Token = "d341e18b-b0b5-4d33-a33d-9239ea617e5a" };
-        jsDrop.Store<Chat, JsnReceiver> (new List<Chat>
+        GameManager.instance.JSON.Store<Chat, JsnReceiver> (new List<Chat>
         {
             new Chat{PlayerName = GameManager.instance.Username, 
                      Level = GameManager.instance.Level, 

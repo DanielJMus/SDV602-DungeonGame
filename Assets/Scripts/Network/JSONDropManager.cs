@@ -20,12 +20,10 @@ public class JSONDropManager : MonoBehaviour
 
     public void Register (string username, string password)
     {
-        JSONDropService jsDrop = new JSONDropService { Token = "d341e18b-b0b5-4d33-a33d-9239ea617e5a" };
-        jsDrop.Store<Account, JsnReceiver> (new List<Account>
+        GameManager.instance.JSON.Store<Account, JsnReceiver> (new List<Account>
         {
             new Account{Username = username, Password = password, Level = 0}
         }, jsnReceiverDel);
-        print("Account registered successfully");
     }
 
     // public void jsnLoginDel(List<Account> pReceivedList)
@@ -37,9 +35,8 @@ public class JSONDropManager : MonoBehaviour
 
     public void CheckLogin <T>(string username, string password)
     {
-        JSONDropService jsDrop = new JSONDropService { Token = "d341e18b-b0b5-4d33-a33d-9239ea617e5a" };
         string query = "username = '" + username + "' AND " + "password = '" + password + "'";
-        jsDrop.Select<Account, JsnReceiver>(query, jsnListReceiverDel, jsnReceiverDel);
+        GameManager.instance.JSON.Select<Account, JsnReceiver>(query, jsnListReceiverDel, jsnReceiverDel);
     }
 
     void Start () {
