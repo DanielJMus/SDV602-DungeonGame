@@ -19,6 +19,20 @@ public class Player : MonoBehaviour
         } else if(Input.GetKey(KeyCode.RightArrow)) {
             Move("right");
         }
+
+        GetDeviceTilt();
+    }
+
+    // Accelerometer input, user can tilt their phone to move around
+    private float tiltThreshold = 0.25f;
+    void GetDeviceTilt () {
+        if(Accelerometer.Yaw > tiltThreshold) {
+            Move("right");
+        } else if(Accelerometer.Yaw < -tiltThreshold) {
+            Move("left");
+        } else if(Accelerometer.Pitch < -tiltThreshold * 3) {
+            Move("forward");
+        }
     }
     
     // Move the camera in the specified direction

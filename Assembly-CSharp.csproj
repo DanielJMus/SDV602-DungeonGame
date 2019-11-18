@@ -54,6 +54,7 @@
      <Compile Include="Assets\ItemTile.cs" />
      <Compile Include="Assets\MenuInteraction.cs" />
      <Compile Include="Assets\Player.cs" />
+     <Compile Include="Assets\Scripts\Accelerometer.cs" />
      <Compile Include="Assets\Scripts\DatabaseManager.cs" />
      <Compile Include="Assets\Scripts\InventoryManager.cs" />
      <Compile Include="Assets\Scripts\Network\AkeakeState.cs" />
