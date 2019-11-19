@@ -118,7 +118,8 @@ public class JSONDropService
             bool isAuto = false;
             string tblName = typeof(T).ToString();
             var tblType = typeof(T);
-            TableMapping map = AkeakeState.DB.Connection.GetMapping(tblType);
+            // TableMapping map = AkeakeState.DB.Connection.GetMapping(tblType);
+            TableMapping map = GameManager.instance.database.Connection.GetMapping(tblType);
             var PrimaryKeys = map.Columns.Where<TableMapping.Column>(
                 x =>
                 {

@@ -33,6 +33,7 @@ public class ItemTile : MonoBehaviour
     private bool hasCheckedInventoryState = false;
 
     void Update () {
+        // When the game loads the player's inventory, check if the player already has this item, if they do then destroy it
         if(GameManager.instance.inventory.HasLoaded && !hasCheckedInventoryState) {
             hasCheckedInventoryState = true;
             if(GameManager.instance.inventory.HasItem(Name)) {

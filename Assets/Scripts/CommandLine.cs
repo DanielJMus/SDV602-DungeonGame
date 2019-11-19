@@ -43,6 +43,7 @@ public class CommandLine : MonoBehaviour
         
     }
 
+    // Output a message to the console without any other special logic
     public void Send (string _input) {
         output.text += '\n' + _input;
     }

@@ -16,6 +16,7 @@ public class InventoryManager : MonoBehaviour
         GameManager.instance.JSON.All<Inventory, JsnReceiver>(LoadInventory, LoadInventoryFail);
     }
 
+    // Get all of the current items that the player has in their inventory
     private void LoadInventory (List<Inventory> inventoryItems) {
         inventory.Clear();
         foreach(Inventory item in inventoryItems) {
@@ -24,6 +25,7 @@ public class InventoryManager : MonoBehaviour
         HasLoaded = true;
     }
 
+    // Add a single item to the player's inventory
     public void AddInventoryItem (string _itemname)
     {
         itemContext = _itemname;
@@ -33,6 +35,7 @@ public class InventoryManager : MonoBehaviour
         }, AddInventorySuccess);
     }
 
+    // Remove an item from the player's inventory.
     public void RemoveInventoryItem (string _itemname)
     {
         itemContext = _itemname;
@@ -40,6 +43,7 @@ public class InventoryManager : MonoBehaviour
         GameManager.instance.JSON.Delete<Inventory, JsnReceiver>(query, RemoveInventorySuccess);
     }
 
+    // Returns true if user has the specified item.
     public bool HasItem (string _itemname) {
         return inventory.Contains(_itemname);
     }

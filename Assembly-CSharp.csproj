@@ -44,34 +44,28 @@
     <ImplicitlyExpandNETStandardFacades>false</ImplicitlyExpandNETStandardFacades>
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
-  <ItemGroup>     <Compile Include="Assets\Cmd.cs" />
-     <Compile Include="Assets\CmdMap.cs" />
-     <Compile Include="Assets\CommandLine.cs" />
-     <Compile Include="Assets\CommandManager.cs" />
-     <Compile Include="Assets\DisableAfterSeconds.cs" />
-     <Compile Include="Assets\DoorTile.cs" />
-     <Compile Include="Assets\FadeOut.cs" />
-     <Compile Include="Assets\GameManager.cs" />
-     <Compile Include="Assets\ItemTile.cs" />
-     <Compile Include="Assets\MenuInteraction.cs" />
-     <Compile Include="Assets\Player.cs" />
-     <Compile Include="Assets\Scripts\Accelerometer.cs" />
+  <ItemGroup>     <Compile Include="Assets\Scripts\Accelerometer.cs" />
+     <Compile Include="Assets\Scripts\Cmd.cs" />
+     <Compile Include="Assets\Scripts\CmdMap.cs" />
+     <Compile Include="Assets\Scripts\CommandLine.cs" />
+     <Compile Include="Assets\Scripts\CommandManager.cs" />
      <Compile Include="Assets\Scripts\DatabaseManager.cs" />
+     <Compile Include="Assets\Scripts\DisableAfterSeconds.cs" />
+     <Compile Include="Assets\Scripts\DoorTile.cs" />
+     <Compile Include="Assets\Scripts\FadeOut.cs" />
+     <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\InventoryManager.cs" />
-     <Compile Include="Assets\Scripts\Network\AkeakeState.cs" />
+     <Compile Include="Assets\Scripts\ItemTile.cs" />
+     <Compile Include="Assets\Scripts\MenuInteraction.cs" />
      <Compile Include="Assets\Scripts\Network\JSONDropManager.cs" />
      <Compile Include="Assets\Scripts\Network\JSONDropService.cs" />
      <Compile Include="Assets\Scripts\Network\SetupRemoteDatabase.cs" />
-     <Compile Include="Assets\Scripts\SQLite\DataService.cs" />
-     <Compile Include="Assets\Scripts\SQLite\Examples\CreateDBScript.cs" />
-     <Compile Include="Assets\Scripts\SQLite\Examples\ExistingDBScript.cs" />
-     <Compile Include="Assets\Scripts\SQLite\Examples\Person.cs" />
+     <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\SQLite\SQLite.cs" />
      <Compile Include="Assets\Scripts\Tables\Account.cs" />
      <Compile Include="Assets\Scripts\Tables\Chat.cs" />
      <Compile Include="Assets\Scripts\Tables\Inventory.cs" />
-     <Compile Include="Assets\SetCameraSizeOnStart.cs" />
-     <Compile Include="Assets\TextFlasher.cs" />
+     <Compile Include="Assets\Scripts\TextFlasher.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>D:/Documents/Git/SDV602-DungeonGame/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>

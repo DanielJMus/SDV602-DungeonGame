@@ -8,22 +8,22 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance;
     public Player player;
+
+    [Header("User Data")]
     public int ID = -1;
     public string Username;
     public string Password;
     public int Level;
 
-    public bool HasGoldKey;
-
     public DatabaseManager database;
     public CommandLine cmdLine;
     public InventoryManager inventory;
-
-    public int PreviousChatMessageCount;
-    public int LevelChatMessageCount;
-    public bool chatHasUpdatedOnce;
-
     public JSONDropService JSON = null;
+
+    private int PreviousChatMessageCount;
+    private int LevelChatMessageCount;
+    private bool chatHasUpdatedOnce;
+
 
     void OnEnable()
     {
@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded -= OnLevelFinishedLoading;
     }
 
-    // As soon as the script wakes up, set the script up as a singleton.
+    // As soon as the script wakes up, set the script up as a singleton and set it to not destroy on level change.
     void OnLevelFinishedLoading (Scene scene, LoadSceneMode mode) {
         DontDestroyOnLoad(this.gameObject);
 
@@ -51,10 +51,11 @@ public class GameManager : MonoBehaviour
         // Find or create necessary objects
         player = Object.FindObjectOfType<Player>();
         inventory = Object.FindObjectOfType<InventoryManager>();
-        // database = new DatabaseManager("GameData.db");
         cmdLine = Object.FindObjectOfType<CommandLine>();
+        database = new DatabaseManager("GameData.db");
     }
 
+    // How often the chat should check for new updates
     private float chatUpdateInterval = 1.0f, lastChatUpdate = 0.0f;
 
     void Update ()
@@ -74,14 +75,15 @@ public class GameManager : MonoBehaviour
     // If the number of chat messages in the current level has changed, append all of the new messages to the chat log
     void CheckChatMessageCount (List<Chat> chatMessageList)
     {
-        if(chatMessageList.Count != LevelChatMessageCount && chatHasUpdatedOnce) {
+        if(chatMessageList.Count != LevelChatMessageCount && chatHasUpdatedOnce)
+        {
             UpdateChatMessages(chatMessageList);
         }
-        if(!chatHasUpdatedOnce) {
+        if(!chatHasUpdatedOnce)
+        {
             PreviousChatMessageCount = chatMessageList.Count;
             chatHasUpdatedOnce = true;
         }
-        
         LevelChatMessageCount = chatMessageList.Count;
     }
     void ChatMessageFail(JsnReceiver pReceived) { }
@@ -97,6 +99,7 @@ public class GameManager : MonoBehaviour
         PreviousChatMessageCount = chatMessageList.Count;
     }
 
+    // Update the user level in the database and then move them to the next scene.
     public void FinishLevel () {
         JSON.Store<Account, JsnReceiver> (new List<Account>
         {

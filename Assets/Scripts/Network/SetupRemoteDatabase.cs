@@ -4,43 +4,34 @@ using UnityEngine;
 
 public class SetupRemoteDatabase : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    // Various database queries to set things up.
     void Start()
     {
-
-        // GameManager.instance.JSON.Drop<Account, JsnReceiver>(fi);
+        GameManager.instance.JSON.Drop<Account, JsnReceiver>(Received);
 
         // GameManager.instance.JSON.Create<Account, JsnReceiver>(new Account
         // {               
         //     Username = "******************************",
         //     Password = "******************************",
-        //     Level = 1,
-        // }, fi);
+        //     Level = 0,
+        // }, Received);
 
-        // jsDrop.Create<Inventory, JsnReceiver>(new Inventory
+        // GameManager.instance.JSON.Create<Inventory, JsnReceiver>(new Inventory
         // {               
         //     ItemName = "******************************",
         //     PlayerID = 254,
-        // }, jsnReceiverDel);
+        // }, Received);
 
         // GameManager.instance.JSON.Store<Account, JsnReceiver> (new List<Account>
         // {
         //     new Account{Username = "Admin", Password = "Admin", Level = 0},
-        //     new Account{Username = "DanielJMus", Password = "Password1", Level = 0},
-        //     new Account{Username = "Testo", Password = "Testo", Level = 0}
-        //  }, fi);
+        //     new Account{Username = "DanielJMus", Password = "Password1", Level = 0}
+        //  }, Received);
 
-        // GameManager.instance.JSON.All<Account, JsnReceiver>(fli, fi);
+        // GameManager.instance.JSON.All<Account, JsnReceiver>(ReceivedList, Received);
     }
 
-    // Update is called once per frame
-    void fi(JsnReceiver r)
-    {
-        
-    }
-
-    void fli(List<Account> r)
-    {
-        
-    }
+    void Received(JsnReceiver r) { }
+    void ReceivedList(List<Account> r) { }
 }

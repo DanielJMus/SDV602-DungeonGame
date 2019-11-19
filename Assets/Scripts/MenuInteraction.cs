@@ -11,9 +11,11 @@ public class MenuInteraction : MonoBehaviour
     [SerializeField] private InputField passwordField;
     [SerializeField] private Text outputText;
     [SerializeField] private GameObject incorrectText;
+    [SerializeField] private GameObject registerText;
+    [SerializeField] private GameObject loadingText;
+    [SerializeField] private GameObject existsText;
 
     private DatabaseManager db;
-    private JSONDropManager jsn;
 
     void Start ()
     {
@@ -22,28 +24,31 @@ public class MenuInteraction : MonoBehaviour
 
     public void Login ()
     {
+        loadingText.SetActive(true);
         string query = "username = '" + usernameField.text + "' AND " + "password = '" + passwordField.text + "'";
         GameManager.instance.JSON.Select<Account, JsnReceiver>(query, LoginSuccess, LoginFail);
     }
 
     public void Register ()
     {
+        loadingText.SetActive(true);
         GameManager.instance.JSON.All<Account, JsnReceiver>(CheckUsers, null);
-
     }
 
+    // When a user registers, check if a user already exists with that username, if not then create the account.
     void CheckUsers (List<Account> users) {
         bool accountExists = false;
         foreach(Account user in users) {
             if(user.Username == usernameField.text) {
-                print("Account already exists");
+                loadingText.SetActive(false);
+                existsText.SetActive(true);
                 accountExists = true;
             }
         }
         if(!accountExists) {
             GameManager.instance.JSON.Store<Account, JsnReceiver> (new List<Account>
             {
-                new Account{Username = usernameField.text, Password = passwordField.text, Level = 1}
+                new Account{Username = usernameField.text, Password = passwordField.text, Level = 0}
             }, RegisterSuccess);
         }
     }
@@ -66,15 +71,17 @@ public class MenuInteraction : MonoBehaviour
 
     public void RegisterSuccess(JsnReceiver pReceived)
     {
-        print("Registered! You can now log in.");
+        loadingText.SetActive(false);
+        registerText.SetActive(true);
     }
 
     public void LoginFail(JsnReceiver pReceived)
     {
+        loadingText.SetActive(false);
         incorrectText.SetActive(true);
-        print("Username or password incorrect.");
     }
 
+    // Retrieve player information into GameManager for reference and load them into the last level they were in.
     public void LoginSuccess(List<Account> pReceivedList)
     {
         GameManager.instance.ID = pReceivedList[0].ID;

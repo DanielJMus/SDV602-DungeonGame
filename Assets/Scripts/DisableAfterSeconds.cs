@@ -11,6 +11,7 @@ public class DisableAfterSeconds : MonoBehaviour
         StartCoroutine(Disable());
     }
 
+    // After X seconds, set the object as inactive.
     IEnumerator Disable () {
         yield return new WaitForSeconds(seconds);
         gameObject.SetActive(false);
